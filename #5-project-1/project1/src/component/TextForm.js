@@ -7,10 +7,22 @@ function TextForm(props) {
     setText(newText);
   };
 
+
+  const lowerCaseClick = () =>{
+    let newText1 = text.toLowerCase();
+    setText(newText1);
+  }
+
+  const emptyClick = () =>{
+    let newText2 = '';
+    setText(newText2);
+  }
   const handleOnChange = (event) => {
     console.log("onchange");
     setText(event.target.value);
   };
+
+
 // hooks - [default value, setvalue to]
   const [text, setText] = useState("Enter the text here");
   return (
@@ -28,6 +40,12 @@ function TextForm(props) {
       </div>
       <button className="btn btn-primary" onClick={upperCaseClick}>
         Uppercase
+      </button>
+      <button className="btn btn-primary" onClick={lowerCaseClick}>
+        Lowercase
+      </button>
+      <button className="btn btn-primary" onClick={emptyClick}>
+        count
       </button>
     </div>
     <div className="container my-5">
