@@ -1,13 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav
+      className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
+    >
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           {props.title}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,17 +25,59 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" to="/about">
                 {props.heading}
-              </a>
+              </Link>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+
+
+
+          <div className="form-check form-switch text-light mx-auto">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              onClick={props.pinkMode}
+              id="flexSwitchCheckDefault"
+            />
+            <label className={`form-check-label text-${props.textmode}`} htmlFor="flexSwitchCheckDefault">
+              Enable {props.pinkTextmode} mode
+            </label>
+          </div>
+
+
+
+          <div className="form-check form-switch text-light mx-auto">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              onClick={props.greenMode}
+              id="flexSwitchCheckDefault"
+            />
+            <label className={`form-check-label text-${props.textmode}`} htmlFor="flexSwitchCheckDefault">
+              Enable {props.greenTextMode} mode
+            </label>
+          </div>
+          <div className="form-check form-switch text-light mx-auto">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              onClick={props.toggleMode}
+              id="flexSwitchCheckDefault"
+            />
+            <label className={`form-check-label text-${props.textmode}`} htmlFor="flexSwitchCheckDefault">
+              Enable {props.textmode} mode
+            </label>
+          </div>
+          {/* <form className="d-flex" role="search">
             <input
               className="form-control me-2"
               type="search"
@@ -42,7 +87,7 @@ export default function Navbar(props) {
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>
@@ -51,8 +96,5 @@ export default function Navbar(props) {
 
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
-  heading: PropTypes.string.isRequired
-};  
-
-
-
+  heading: PropTypes.string.isRequired,
+};

@@ -22,9 +22,26 @@ function TextForm(props) {
     setText(event.target.value);
   };
 
+  const countLettersAndWords = (inputText) => {
+    // Calculate word count
+    const words = inputText.trim().split(/\s+/);
+    const wordCount = inputText === '' ? 0 : words.length;
+
+    // Calculate letter count (excluding spaces)
+    const letterCount = inputText.replace(/\s+/g, '').length;
+
+    return { wordCount, letterCount };
+  };
+
+  
+
+  
 
 // hooks - [default value, setvalue to]
   const [text, setText] = useState("Enter the text here");
+  
+  const { wordCount, letterCount } = countLettersAndWords(text);
+
   return (
     <>
     <div className="container">
@@ -50,7 +67,7 @@ function TextForm(props) {
     </div>
     <div className="container my-5">
         <h1>My text summary</h1>
-        <p>{text.split(" ").length} words and {text.length} characters</p>
+        <p>{wordCount} words and {letterCount} characters</p>
     </div>
     </>
   );
